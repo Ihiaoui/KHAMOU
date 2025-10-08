@@ -1,0 +1,106 @@
+:root{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --accent:#1e90ff;
+  --muted:#6b7280;
+  --glass: rgba(255,255,255,0.6);
+  --dark-bg:#0e1116;
+  --dark-card:#0f1720;
+  --text:#0f1720;
+}
+
+/* Reset + base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font-family:Inter, "Segoe UI", Tahoma, sans-serif;
+  background:linear-gradient(120deg,#f7fbff 0%, #eef6ff 100%);
+  color:var(--text); -webkit-font-smoothing:antialiased;
+}
+
+/* Topbar */
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;padding:18px 24px;
+  background:transparent;
+}
+.logo-wrap{display:flex;flex-direction:column;align-items:flex-end}
+.logo{font-weight:700;font-size:20px;letter-spacing:1px}
+.subtitle{font-size:12px;color:var(--muted)}
+
+/* Controls */
+.controls{display:flex;gap:12px;align-items:center}
+.icon-btn{background:var(--card);border:none;padding:8px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(30,144,255,0.08)}
+.icon-btn svg{display:block}
+.icon-sun{opacity:1}
+.icon-moon{display:none;opacity:0}
+
+/* User badge */
+.user-badge{display:flex;gap:8px;align-items:center;font-size:14px}
+.user-badge .small{padding:6px 8px;border-radius:8px;border:none;background:#eee}
+
+/* Layout */
+.container{display:flex;gap:18px;max-width:1100px;margin:20px auto;padding:0 20px}
+.sidebar{width:180px;flex-shrink:0}
+.sidebar nav{display:flex;flex-direction:column;gap:8px;position:sticky;top:18px}
+.side-item{
+  text-align:right;padding:12px;border-radius:10px;border:none;background:transparent;cursor:pointer;font-weight:600;color:var(--muted);
+}
+.side-item.active{background:linear-gradient(90deg, rgba(30,144,255,0.12), rgba(30,144,255,0.06));color:var(--accent)}
+
+/* main area */
+.main{flex:1}
+.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.06);margin-bottom:16px;}
+
+/* auth */
+.auth-card{max-width:540px;margin:0 auto;text-align:center}
+.auth-card input{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid #e5e7eb}
+
+/* stats */
+.stats{display:flex;gap:12px;flex-wrap:wrap}
+.stat{flex:1;min-width:140px;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff)}
+.stat-number{font-size:28px;font-weight:700;color:var(--accent)}
+.stat-label{color:var(--muted);margin-top:6px}
+
+/* chat */
+.chat-box{height:220px;overflow:auto;padding:12px;border-radius:8px;border:1px solid #eef2f7;background:#fbfdff}
+.chat-controls{display:flex;gap:8px;margin-top:10px}
+.chat-controls input{flex:1;padding:10px;border-radius:8px;border:1px solid #e5e7eb}
+
+/* grid images */
+.image-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.image-item{position:relative;border-radius:10px;overflow:hidden;background:#f8fafc}
+.image-item img{width:100%;height:120px;object-fit:cover;display:block}
+.img-actions{position:absolute;left:8px;bottom:8px;display:flex;gap:8px}
+
+/* texts */
+.text-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.text-card{padding:12px;border-radius:10px;background:#fcfeff;min-height:100px;display:flex;flex-direction:column;justify-content:space-between}
+.text-card p{margin:0 0 8px 0;color:var(--muted)}
+
+/* rows and buttons */
+.row{display:flex;gap:8px;justify-content:flex-start;margin-top:8px}
+button{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer}
+button.alt{background:#eef2f7;color:var(--text)}
+button.hide{display:none}
+.muted{color:var(--muted);font-size:13px}
+
+/* toast */
+.toast{position:fixed;left:20px;bottom:20px;background:#111;color:#fff;padding:10px 14px;border-radius:8px;opacity:0;transform:translateY(12px);transition:all .28s;z-index:60}
+
+/* dark theme */
+body.dark{
+  background:linear-gradient(120deg,#05060a 0%, #071023 100%);color:#e6eef8
+}
+body.dark .card{background:var(--dark-card);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+body.dark .icon-btn{background:#0b1220}
+body.dark .icon-sun{display:none}
+body.dark .icon-moon{display:block}
+body.dark .side-item{color:#aeb8c8}
+body.dark .side-item.active{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));color:var(--accent)}
+
+/* responsive */
+@media (max-width:860px){
+  .container{flex-direction:column;padding:0 12px}
+  .sidebar{width:100%;order:2}
+  .side-item{text-align:center}
+}
