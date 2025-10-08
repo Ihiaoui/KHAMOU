@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>KHAMOU-TEAM — Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-wrap">
+      <!-- شعار نصي + استخراج مكان لشعار SVG -->
+      <div class="logo">KHAMOU-TEAM</div>
+      <div class="subtitle">منصة المحتوى والروابط</div>
+    </div>
+
+    <div class="controls">
+      <button id="themeToggle" class="icon-btn" aria-label="تبديل الوضع">
+        <!-- أيقونة شمس/قمر (SVG) -->
+        <svg id="icon-sun" class="icon-sun" viewBox="0 0 24 24" width="24" height="24" aria-hidden>
+          <circle cx="12" cy="12" r="4" fill="#111"/>
+          <g stroke="#111" stroke-width="1.2">
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/>
+            <line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/>
+            <line x1="4.2" y1="19.8" x2="5.6" y2="18.4"/>
+            <line x1="18.4" y1="5.6" x2="19.8" y2="4.2"/>
+          </g>
+        </svg>
+        <svg id="icon-moon" class="icon-moon" viewBox="0 0 24 24" width="24" height="24" aria-hidden>
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="#111"/>
+        </svg>
+      </button>
+
+      <div id="userBadge" class="user-badge">
+        <span id="userName">ضيف</span>
+        <button id="logoutBtn" title="تسجيل خروج" class="small hide">خروج</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- sidebar / كتالوج جانبي -->
+    <aside class="sidebar" id="sidebar">
+      <nav>
+        <button class="side-item active" data-section="visitor">لوحة التحكم</button>
+        <button class="side-item" data-section="chat">الشات</button>
+        <button class="side-item" data-section="images">الصور</button>
+        <button class="side-item" data-section="texts">النصوص</button>
+        <button class="side-item" data-section="links">اختصار الروابط</button>
+        <button class="side-item" data-section="settings">الإعدادات</button>
+      </nav>
+    </aside>
+
+    <!-- main content -->
+    <section class="main" id="main">
+      <!-- شاشة تسجيل بسيط (محاكاة حساب) -->
+      <div id="authBox" class="card auth-card">
+        <h2>أهلاً بك — سجّل دخولك لتبدأ</h2>
+        <input id="nameInput" placeholder="اسمك (سيظهر في الشات)">
+        <input id="emailInput" placeholder="البريد الإلكتروني (اختياري)">
+        <div class="row">
+          <button id="btnLogin">دخول كضيف</button>
+          <button id="btnClear" class="alt">مسح البيانات</button>
+        </div>
+        <p class="muted">هذه خاصية محلية مؤقتة: لحفظ الحساب الحقيقي سنربط لاحقًا بـ Backend.</p>
+      </div>
+
+      <!-- Sections -->
+      <div id="visitor" class="card section active">
+        <h2>عداد الزوار</h2>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-number" id="totalVisitors">0</div>
+            <div class="stat-label">مجموع الزوار</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" id="completedVisitors">0</div>
+            <div class="stat-label">أكملوا الرابط</div>
+          </div>
+        </div>
+        <p class="muted">هذا العداد متحرك أمامك — لاحقًا نوصّله بقاعدة بيانات حقيقية.</p>
+      </div>
+
+      <div id="chat" class="card section">
+        <h2>شات الأعضاء</h2>
+        <div id="chatBox" class="chat-box" aria-live="polite"></div>
+        <div class="chat-controls">
+          <input id="chatInput" placeholder="اكتب رسالة...">
+          <button id="chatSend">إرسال</button>
+        </div>
+      </div>
+
+      <div id="images" class="card section">
+        <h2>معرض الصور</h2>
+        <div id="imageGrid" class="image-grid"></div>
+      </div>
+
+      <div id="texts" class="card section">
+        <h2>النصوص الجاهزة</h2>
+        <div id="textList" class="text-list"></div>
+      </div>
+
+      <div id="links" class="card section">
+        <h2>اختصار الروابط</h2>
+        <input id="urlInput" placeholder="ضع رابطك هنا">
+        <div class="row">
+          <button id="shortenBtn">اختصر الرابط</button>
+          <button id="copyShort" class="alt hide">نسخ الرابط المختصر</button>
+        </div>
+        <p class="muted">رابطك المختصر: <span id="shortResult">—</span></p>
+      </div>
+
+      <div id="settings" class="card section">
+        <h2>الإعدادات</h2>
+        <p class="muted">إعدادات بسيطة: تخزين محلي، ثيم، إمكانية تفريغ البيانات.</p>
+        <div class="row">
+          <button id="clearData" class="alt">تفريغ بيانات المحاكاة</button>
+          <button id="exportData">تصدير بيانات (JSON)</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- إشعارات صغيرة -->
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
